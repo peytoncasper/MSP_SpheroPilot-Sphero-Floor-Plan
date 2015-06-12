@@ -1,0 +1,10 @@
+{
+  "name": "SpheroFloor",
+  "version": "0.0.0",
+  "description": "SpheroFloor",
+  "main": "app.js",
+  "author": {
+    "name": "peyton",
+    "email": ""
+  }
+}

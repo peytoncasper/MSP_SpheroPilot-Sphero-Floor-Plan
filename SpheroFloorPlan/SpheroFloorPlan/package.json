@@ -1,0 +1,13 @@
+{
+  "name": "SpheroFloorPlan",
+  "version": "0.0.0",
+  "description": "SpheroFloorPlan",
+  "main": "app.js",
+  "author": {
+    "name": "peyton",
+    "email": ""
+  },
+  "dependencies": {
+    "sphero": "^0.3.0"
+  }
+}
