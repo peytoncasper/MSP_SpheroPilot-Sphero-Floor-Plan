@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 var sphero = require("sphero");
-var orb = sphero("COM5");
+var orb = sphero("/dev/rfcomm0");
 
 
 var stdin = process.stdin;
@@ -9,8 +9,15 @@ stdin.setRawMode(true);
 stdin.resume();
 stdin.setEncoding('utf8');
 orb.connect(function () {
-    stdin.on('data', function (key) {
-        var degree = -1;
+    
+    
+    
+    stdin.on('data', Input);
+});
+
+function Input(key)
+{
+            var degree = -1;
         switch (key) {
             case 'w':
                 console.log("Foward");
@@ -35,8 +42,7 @@ orb.connect(function () {
                 break;
         }
         if (degree != -1) {
-            orb.roll(10, degree);
+            orb.roll(15, degree);
 
         }
-    });
-});
+}
