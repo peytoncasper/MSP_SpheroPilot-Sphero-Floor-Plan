@@ -2,14 +2,25 @@
 
 var sphero = require("sphero");
 var orb = sphero("/dev/rfcomm0");
-
+var fs = require('fs');
 
 var stdin = process.stdin;
 stdin.setRawMode(true);
 stdin.resume();
 stdin.setEncoding('utf8');
+
+
+var degree = -1;
+
+
 orb.connect(function () {
+    orb.streamOdometer();
     
+    orb.on("odometer", function(data)
+        {
+            console.log(data);
+            fs.appendFile("data.txt", data.xOdometer.value[0] + ", " + data.yOdometer.value[0]+ "\n", function(err){});
+        });
     
     
     stdin.on('data', Input);
@@ -17,22 +28,17 @@ orb.connect(function () {
 
 function Input(key)
 {
-            var degree = -1;
         switch (key) {
             case 'w':
-                console.log("Foward");
                 degree = 0;
                 break;
             case 'a':
-                console.log("Left");
                 degree = 270;
                 break;
             case 's':
-                console.log("Backwards");
                 degree = 180;
                 break;
             case 'd':
-                console.log("Right");
                 degree = 90;
                 break;
             case '\u0003':
